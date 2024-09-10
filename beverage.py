@@ -28,4 +28,6 @@ class BeverageCollection:
         else:
             return False
 
-
+    def __str__(self):
+        my_str = "\n".join(map(str, self.__beverages))
+        return my_str
