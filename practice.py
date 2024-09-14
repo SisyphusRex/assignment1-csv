@@ -5,3 +5,6 @@ print(my_str)
 
 x = Decimal(4.3567)
 print(x)
+
+truth = True
+print(truth)
