@@ -12,9 +12,9 @@ class Beverage:
     ####################
     # Constructor      #
     ####################
-    def __init__(self, id: str, name: str, pack: str, price: Union[float, int] ,
+    def __init__(self, bId: str, name: str, pack: str, price: Union[float, int] ,
                  active: bool):
-        self.id = id
+        self.bId = bId
         self.name = name
         self.pack = pack
         self.price = price
@@ -24,7 +24,7 @@ class Beverage:
     # Methods          #
     ####################
     def __str__(self) -> str:
-        return (f"ID: {self.id}, Name: {self.name}, Pack: {self.pack}, Price: {self.__format_decimal(self.price)}, "
+        return (f"ID: {self.bId}, Name: {self.name}, Pack: {self.pack}, Price: {self.__format_decimal(self.price)}, "
                 f"Active: {self.active}")
 
     def __format_decimal(self, n: float) -> str:

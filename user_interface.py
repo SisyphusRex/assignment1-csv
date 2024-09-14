@@ -1,16 +1,27 @@
 #Walter Podewil
 #CIS 226
 #September 14, 2024
+
+#System Imports
+import sys
 import typing
 from typing import Union
+import csv
+
+#First Party Imports
+from beverage import *
+from utils import CSVProcessor
+
+#Third Party Imports
 
 class UserInterface:
     menu_list = [1, 2, 3, 4, 5]
     ##################
     # Constructor    #
     ##################
-    def __init__(self, **kwargs):
-        ...
+    def __init__(self, loaded = False, collection = None):
+        self.loaded = loaded
+        self.collection = collection
 
     ##############
     # Methods    #
@@ -47,7 +58,13 @@ class UserInterface:
         match n:
             case 1:
                 #load file
-                ...
+                if self.loaded == False:
+                    self.__load_file()
+                    print("File Loaded.")
+                    self.display_menu()
+                else:
+                    print("File already loaded.")
+                    self.display_menu()
             case 2:
                 #print list
                 ...
@@ -59,4 +76,29 @@ class UserInterface:
                 ...
             case 5:
                 #exit
-                ...
+                self.__exit
+
+    def __load_file(self):
+        """Load .csv"""
+        #use csvprocessor class for this
+        new_csv = CSVProcessor()
+        new_csv.load_csv
+        self.collection = new_csv.collection
+        self.loaded = True
+
+
+
+    def __print_list(self):
+        """print beverage list"""
+        ...
+
+    def __search_list(self):
+        """search for beverage"""
+        ...
+
+    def __add_new_beverage(self):
+        """Add beverage to list"""
+        ...
+
+    def __exit(self):
+        sys.exit("Goodbye")
