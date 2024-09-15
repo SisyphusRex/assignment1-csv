@@ -24,7 +24,7 @@ class Beverage:
     # Methods          #
     ####################
     def __str__(self) -> str:
-        return (f"ID: {self.bId}, Name: {self.name}, Pack: {self.pack}, Price: {self.__format_decimal(self.price)}, "
+        return (f"ID: {self.bId}, Name: {self.name}, Pack: {self.pack}, Price: {self.__format_decimal(float(self.price))}, "
                 f"Active: {self.active}")
 
     def __format_decimal(self, n: float) -> str:
@@ -35,8 +35,10 @@ class BeverageCollection:
     def __init__(self, __beverages: list = None):
         self.__beverages = __beverages or []
 
+
     def add(self, n: Beverage):
         self.__beverages.append(n)
+
 
     def search(self, n: Beverage) -> bool:
         if n in self.__beverages:
