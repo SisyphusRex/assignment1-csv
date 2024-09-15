@@ -40,11 +40,12 @@ class BeverageCollection:
         self.__beverages.append(n)
 
 
-    def search(self, n: Beverage) -> bool:
-        if n in self.__beverages:
-            return True
-        else:
-            return False
+    def search(self, n: str) -> Union[bool, Beverage]:
+        """This searches the collection by ID"""
+        for item in self.__beverages:
+            if item.bId == n:
+                return item
+        return None
 
     def __str__(self) -> str:
         my_str = "\n".join(map(str, self.__beverages))

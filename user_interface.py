@@ -19,7 +19,7 @@ class UserInterface:
     ##################
     # Constructor    #
     ##################
-    def __init__(self, loaded = False, collection = None):
+    def __init__(self, loaded: bool = False, collection: BeverageCollection = None):
         self.loaded = loaded
         self.collection = collection
 
@@ -29,13 +29,14 @@ class UserInterface:
     def display_menu(self):
         #displays menu, returns user choice with an int
         """Display Menu"""
+        check = True
         while check == True:
             user_input = input("Enter the number of your selection:\n"
                                 "1. Load File\n"
                                 "2. Print List\n"
                                 "3. Search List\n"
                                 "4. Add New Beverage\n"
-                                "5. Exit")
+                                "5. Exit\n")
             check, final_input = self.__check_menu_input(user_input)
         self.__evaluate_menu_input(final_input)
 
@@ -47,7 +48,7 @@ class UserInterface:
         except ValueError:
             print("Not an integer.")
             return True, None
-        if n in self.menu_list:
+        if x in self.menu_list:
             return False, x
         else:
             print("You must type 1, 2, 3, 4, or 5")
@@ -67,62 +68,84 @@ class UserInterface:
 
             case 2:
                 #print list
-                self.__print_list
-
+                #print("case 2")
+                if self.loaded == False:
+                    print("File must be loaded.")
+                else:
+                    self.__print_list()
             case 3:
                 #search list
-                self.__search_list
-
+                #print("case 3")
+                if self.loaded == False:
+                    print("File must be loaded.")
+                else:
+                    self.__search_list()
             case 4:
                 #add new beverage
-                self.__add_new_beverage
+                #print("case 4")
+                if self.loaded == False:
+                    print("File must be loaded.")
+                else:
+                    self.__add_new_beverage()
             case 5:
                 #exit
-                self.__exit
-        self.display_menu
+                #print("case 5")
+                self.__exit()
+
 
     def __load_file(self):
         """Load .csv"""
         #use csvprocessor class for this
         new_csv = CSVProcessor()
-        new_csv.load_csv
-        self.collection = new_csv.collection
+        self.collection = new_csv.load_csv()
+        #self.collection = new_csv.collection
         self.loaded = True
+        #print(self.collection)
+
 
 
 
     def __print_list(self):
         """print beverage list"""
-        for item in self.collection:
-            print(item)
+        #print("__print_list")
+        print(self.collection)
 
     def __search_list(self):
         """search for beverage"""
-        while check == True:
-            my_input = input(print("Enter the Beverage ID to search: "))
-            check, final_input = self.__check_id_input(my_input)
-        print(final_input)
+        #print("__search_list")
+        my_input = input("Enter beverage ID: ")
+        found = self.collection.search(my_input)
+        if found:
+            print(found)
+        else:
+            print("ID not found.")
 
     def __add_new_beverage(self):
         """Add beverage to list"""
-        check0 = False
-        while check == False:
-            my_input = input(print("Enter novel a beverage ID: "))
-            check = self.__check_id_input(my_input)
+        #print("__add_new_beverage")
+        check0 = True
+        while check0:
+            my_input = input("Enter new beverage ID: ")
+            found = self.collection.search(my_input)
+            if found:
+                print("That ID exists already.")
+                check0 = True
+            else:
+                check0 = False
         bev_id = my_input
-        my_input = input(print("Enter a Beverage Name: "))
+        my_input = input("Enter a Beverage Name: ")
         bev_name = my_input
-        my_input = input(print("Enter a beverage pack: "))
+        my_input = input("Enter a beverage pack: ")
         bev_pack = my_input
         check1 = True
         while check1:
-            my_input = input(print("Enter a beverage price: "))
+            my_input = input("Enter a beverage price: ")
             check1, bev_price = self.__check_bev_price(my_input)
         check2 = True
         while check2:
-            my_input = input(print("Is the beverage active?\n"
-                                   "Type 1 for Active\n"
-                                   "Type 2 for Inactive"))
+            my_input = input("Is the beverage active?\n"
+                                "Type 1 for Active\n"
+                                "Type 2 for Inactive")
             if my_input == "1":
                 bev_active = True
                 check2 = False
@@ -135,12 +158,12 @@ class UserInterface:
     def __exit(self):
         sys.exit("Goodbye")
 
-    def __check_id_input(self, n: str) -> Union[bool, str]:
-        for item in self.collection.__beverages:
-            if n == item.bId:
-                return False, item
-        print("Beverage ID not found in list.")
-        return True, None
+    #def __check_id_input(self, n: str) -> Union[bool, str]:
+     #   for item in self.collection.__beverages:
+     #       if n == item.bId:
+     #           return False, item
+     #   print("Beverage ID not found in list.")
+      #  return True, None
 
     def __check_bev_price(self, n: str) -> Union[bool, str]:
         try:
