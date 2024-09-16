@@ -19,9 +19,8 @@ class UserInterface:
     ##################
     # Constructor    #
     ##################
-    def __init__(self, loaded: bool = False, collection: BeverageCollection = None):
-        self.loaded = loaded
-        self.collection = collection
+    def __init__(self, initialized: bool = True):
+        self.initialized = initialized
 
     ##############
     # Methods    #
@@ -38,7 +37,8 @@ class UserInterface:
                                 "4. Add New Beverage\n"
                                 "5. Exit\n")
             check, final_input = self.__check_menu_input(user_input)
-        self.__evaluate_menu_input(final_input)
+        #self.__evaluate_menu_input(final_input)
+        return final_input
 
     def __check_menu_input(self, n: str) -> Union[bool, int]:
         """Evaluates user menu input"""
@@ -105,28 +105,28 @@ class UserInterface:
 
 
 
-    def __print_list(self):
+    def print_list(self, collection: BeverageCollection):
         """print beverage list"""
         #print("__print_list")
-        print(self.collection)
+        print(collection)
 
-    def __search_list(self):
+    def search_list(self, collection: BeverageCollection):
         """search for beverage"""
         #print("__search_list")
         my_input = input("Enter beverage ID: ")
-        found = self.collection.search(my_input)
+        found = collection.search(my_input)
         if found:
             print(found)
         else:
             print("ID not found.")
 
-    def __add_new_beverage(self):
+    def add_new_beverage(self, collection: BeverageCollection) -> str:
         """Add beverage to list"""
         #print("__add_new_beverage")
         check0 = True
         while check0:
             my_input = input("Enter new beverage ID: ")
-            found = self.collection.search(my_input)
+            found = collection.search(my_input)
             if found:
                 print("That ID exists already.")
                 check0 = True
@@ -152,11 +152,12 @@ class UserInterface:
             if my_input == "2":
                 bev_active = False
                 check2 = False
-        new_beverage = Beverage(bev_id, bev_name, bev_pack, bev_price, bev_active)
-        self.collection.add(new_beverage)
+        return bev_id, bev_name, bev_pack, bev_price, bev_active
+        #new_beverage = Beverage(bev_id, bev_name, bev_pack, bev_price, bev_active)
 
-    def __exit(self):
-        sys.exit("Goodbye")
+
+    def exit(self):
+        print("Goodbye.")
 
     #def __check_id_input(self, n: str) -> Union[bool, str]:
      #   for item in self.collection.__beverages:
@@ -173,4 +174,11 @@ class UserInterface:
             return True, None
         return False, f"{x:.2f}"
 
+    def already_loaded(self):
+        print("File already loaded.")
 
+    def load_message(self):
+        print("Initial Load Complete.")
+
+    def must_load(self):
+        print("File must be loaded first.")
