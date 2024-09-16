@@ -15,7 +15,7 @@ from utils import CSVProcessor
 #Third Party Imports
 
 class UserInterface:
-    menu_list = [1, 2, 3, 4, 5]
+    menu_list = [1, 2, 3, 4, 5, 6]
     ##################
     # Constructor    #
     ##################
@@ -35,7 +35,8 @@ class UserInterface:
                                 "2. Print List\n"
                                 "3. Search List\n"
                                 "4. Add New Beverage\n"
-                                "5. Exit\n")
+                                "5. Save Modified File\n"
+                                "6. Exit\n")
             check, final_input = self.__check_menu_input(user_input)
         #self.__evaluate_menu_input(final_input)
         return final_input
@@ -51,7 +52,7 @@ class UserInterface:
         if x in self.menu_list:
             return False, x
         else:
-            print("You must type 1, 2, 3, 4, or 5")
+            print("You must type 1, 2, 3, 4, 5, or 6")
             return True, None
 
     def __evaluate_menu_input(self, n: int):

@@ -50,6 +50,10 @@ class CSVProcessor:
         else:
             return None
 
+    def save_csv(self, collection: BeverageCollection):
+        with open("datafiles\\modified_beverage_list.csv") as file:
+            writer = csv.writer(file)
+            writer.writerows(collection.__beverages)
 
     def __str__(self):
         return f"{self.csv}"

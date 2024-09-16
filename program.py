@@ -1,3 +1,4 @@
+
 #Walter Podewil
 #CIS 226
 #September 15, 2024
@@ -49,6 +50,10 @@ def main(*args):
                 else:
                     my_interface.must_load()
             case 5:
+                """Save Modified File"""
+                if my_utils.loaded:
+                    my_utils.save_csv(my_collection)
+            case 6:
                 """Exit"""
                 my_interface.exit()
                 sys.exit()
