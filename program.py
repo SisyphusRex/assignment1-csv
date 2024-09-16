@@ -49,6 +49,7 @@ def main(*args):
                 else:
                     my_interface.must_load()
             case 5:
+                """Exit"""
                 my_interface.exit()
                 sys.exit()
 
