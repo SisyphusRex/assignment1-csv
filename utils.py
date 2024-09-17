@@ -5,6 +5,8 @@
 #System Imports
 import csv
 import sys
+import os
+import pathlib
 
 #First Party Imports
 from beverage import *
@@ -38,7 +40,7 @@ class CSVProcessor:
                         active = line[4]
                         new_beverage = Beverage(bId, name, pack, price, active)
                         collection.add(new_beverage)
-                    #self.collection = my_collection
+
 
 
             except FileNotFoundError:
@@ -54,6 +56,11 @@ class CSVProcessor:
             writer = csv.writer(file)
             writer.writerows(beverage_list)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """String method"""
         return f"{self.csv}"
+
+    def __find_files(self, directory: str = "datafiles") -> list:
+        """Creates list of .csv files in datafiles"""
+        my_files = list(pathlib.Path(directory).glob("*.csv"))
+        return my_files
