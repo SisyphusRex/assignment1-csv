@@ -3,10 +3,9 @@
 #September 14, 2024
 
 #System Imports
-import typing
-from typing import Union
 import csv
 import sys
+
 #First Party Imports
 from beverage import *
 #Third Party Imports
@@ -16,6 +15,7 @@ class CSVProcessor:
     # Constructor #
     ###############
     def __init__(self,csv: str = "datafiles\\beverage_list.csv", loaded: bool = False):
+        """Constructor"""
         self.csv = csv
         self.loaded = loaded
 
@@ -26,11 +26,9 @@ class CSVProcessor:
     ###############
     def load_csv(self, collection: BeverageCollection) -> BeverageCollection:
         """Loads CSV"""
-        #print(self.csv)
         if self.loaded == False:
             try:
                 with open(self.csv, newline = '') as file:
-                    #my_collection = BeverageCollection()
                     reader = csv.reader(file)
                     for line in reader:
                         bId = line[0]
@@ -50,10 +48,12 @@ class CSVProcessor:
         else:
             return None
 
-    def save_csv(self, collection: BeverageCollection):
-        with open("datafiles\\modified_beverage_list.csv") as file:
+    def save_csv(self, beverage_list: list):
+        """Saves modified csv"""
+        with open("datafiles\modified_beverage_list.csv", "w", newline = "") as file:
             writer = csv.writer(file)
-            writer.writerows(collection.__beverages)
+            writer.writerows(beverage_list)
 
     def __str__(self):
+        """String method"""
         return f"{self.csv}"

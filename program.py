@@ -27,8 +27,11 @@ def main(*args):
         match choice:
             case 1:
                 """Load .csv to BeverageCollection"""
-                my_collection = my_utils.load_csv(my_collection)
-                my_interface.load_message()
+                if not my_utils.loaded:
+                    my_collection = my_utils.load_csv(my_collection)
+                    my_interface.load_message()
+                else:
+                    my_interface.already_loaded()
             case 2:
                 """Print List"""
                 if my_utils.loaded:
@@ -52,7 +55,8 @@ def main(*args):
             case 5:
                 """Save Modified File"""
                 if my_utils.loaded:
-                    my_utils.save_csv(my_collection)
+                    my_utils.save_csv(my_collection.create_csv_list())
+                my_interface.file_saved()
             case 6:
                 """Exit"""
                 my_interface.exit()

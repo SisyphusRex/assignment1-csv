@@ -3,29 +3,28 @@
 #September 14, 2024
 
 #System Imports
-import sys
-import typing
 from typing import Union
-import csv
 
 #First Party Imports
 from beverage import *
-from utils import CSVProcessor
 
 #Third Party Imports
 
 class UserInterface:
+    """Universal Menu List"""
     menu_list = [1, 2, 3, 4, 5, 6]
     ##################
     # Constructor    #
     ##################
     def __init__(self, initialized: bool = True):
+        """Constructor"""
+        #"initialized" is never used, but I did not know how to initialize the class without a parameter
         self.initialized = initialized
 
     ##############
     # Methods    #
     ##############
-    def display_menu(self):
+    def display_menu(self) -> int:
         #displays menu, returns user choice with an int
         """Display Menu"""
         check = True
@@ -38,7 +37,6 @@ class UserInterface:
                                 "5. Save Modified File\n"
                                 "6. Exit\n")
             check, final_input = self.__check_menu_input(user_input)
-        #self.__evaluate_menu_input(final_input)
         return final_input
 
     def __check_menu_input(self, n: str) -> Union[bool, int]:
@@ -47,92 +45,41 @@ class UserInterface:
         try:
             x = int(n)
         except ValueError:
-            print("Not an integer.")
+            print("**Not an integer.\n")
             return True, None
         if x in self.menu_list:
             return False, x
         else:
-            print("You must type 1, 2, 3, 4, 5, or 6")
+            print("**You must type 1, 2, 3, 4, 5, or 6\n")
             return True, None
-
-    def __evaluate_menu_input(self, n: int):
-        """Move to user's choice"""
-        match n:
-            case 1:
-                #load file
-                if self.loaded == False:
-                    self.__load_file()
-                    print("File Loaded.")
-
-                else:
-                    print("File already loaded.")
-
-            case 2:
-                #print list
-                #print("case 2")
-                if self.loaded == False:
-                    print("File must be loaded.")
-                else:
-                    self.__print_list()
-            case 3:
-                #search list
-                #print("case 3")
-                if self.loaded == False:
-                    print("File must be loaded.")
-                else:
-                    self.__search_list()
-            case 4:
-                #add new beverage
-                #print("case 4")
-                if self.loaded == False:
-                    print("File must be loaded.")
-                else:
-                    self.__add_new_beverage()
-            case 5:
-                #exit
-                #print("case 5")
-                self.__exit()
-
-
-    def __load_file(self):
-        """Load .csv"""
-        #use csvprocessor class for this
-        new_csv = CSVProcessor()
-        self.collection = new_csv.load_csv()
-        #self.collection = new_csv.collection
-        self.loaded = True
-        #print(self.collection)
-
-
-
 
     def print_list(self, collection: BeverageCollection):
         """print beverage list"""
-        #print("__print_list")
         print(collection)
 
     def search_list(self, collection: BeverageCollection):
         """search for beverage"""
-        #print("__search_list")
         my_input = input("Enter beverage ID: ")
         found = collection.search(my_input)
         if found:
             print(found)
         else:
-            print("ID not found.")
+            print("**ID not found.\n")
 
     def add_new_beverage(self, collection: BeverageCollection) -> str:
         """Add beverage to list"""
-        #print("__add_new_beverage")
         check0 = True
         while check0:
             my_input = input("Enter new beverage ID: ")
             found = collection.search(my_input)
             if found:
-                print("That ID exists already.")
+                print("**That ID exists already.\n")
                 check0 = True
             else:
-                check0 = False
+                if len(my_input) <= 5:
+                    check0 = False
+                else:
+                    print("**Beverage ID must be 5 characters or less.\n")
         bev_id = my_input
         my_input = input("Enter a Beverage Name: ")
         bev_name = my_input
@@ -154,32 +101,33 @@ class UserInterface:
                 bev_active = False
                 check2 = False
         return bev_id, bev_name, bev_pack, bev_price, bev_active
-        #new_beverage = Beverage(bev_id, bev_name, bev_pack, bev_price, bev_active)
 
 
     def exit(self):
+        """Says goodbye."""
         print("Goodbye.")
 
-    #def __check_id_input(self, n: str) -> Union[bool, str]:
-     #   for item in self.collection.__beverages:
-     #       if n == item.bId:
-     #           return False, item
-     #   print("Beverage ID not found in list.")
-      #  return True, None
-
     def __check_bev_price(self, n: str) -> Union[bool, str]:
+        """Checks input to beverage price"""
         try:
             x = float(n)
         except ValueError:
-            print("Price must be a number.")
+            print("**Price must be a number.\n")
             return True, None
         return False, f"{x:.2f}"
 
     def already_loaded(self):
-        print("File already loaded.")
+        """Says already loaded"""
+        print("**File already loaded.\n")
 
     def load_message(self):
-        print("Initial Load Complete.")
+        """Says load complete"""
+        print("*Initial Load Complete.\n")
 
     def must_load(self):
-        print("File must be loaded first.")
+        """Says file must be loaded """
+        print("**File must be loaded first.\n")
+
+    def file_saved(self):
+        """Says file saved"""
+        print("*File Saved.\n")
