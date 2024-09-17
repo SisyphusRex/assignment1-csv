@@ -12,7 +12,7 @@ from beverage import *
 
 class UserInterface:
     """Universal Menu List"""
-    menu_list = [1, 2, 3, 4, 5, 6]
+    MENU_LIST = [1, 2, 3, 4, 5, 6]
     ##################
     # Constructor    #
     ##################
