@@ -13,6 +13,7 @@ from beverage import *
 #Third Party Imports
 
 class CSVProcessor:
+    """This class reads and writes to a csv file"""
     ###############
     # Constructor #
     ###############
