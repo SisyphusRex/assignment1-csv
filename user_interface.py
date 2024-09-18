@@ -11,6 +11,8 @@ from beverage import *
 #Third Party Imports
 
 class UserInterface:
+    """This class handles all UI"""
+    
     """Universal Menu List"""
     MENU_LIST = [1, 2, 3, 4, 5, 6]
     ##################
