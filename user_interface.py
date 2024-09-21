@@ -11,8 +11,10 @@ from beverage import *
 #Third Party Imports
 
 class UserInterface:
+    """This class handles all UI"""
+    
     """Universal Menu List"""
-    menu_list = [1, 2, 3, 4, 5, 6]
+    MENU_LIST = [1, 2, 3, 4, 5, 6]
     ##################
     # Constructor    #
     ##################

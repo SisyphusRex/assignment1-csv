@@ -144,7 +144,11 @@ Try to send any dependencies (instances of classes needed inside other classes) 
 | **Total**                        | **100**|
 
 ## Outside Resources Used
+https://docs.python.org/3/library/csv.html
+I used the Python documentation to implement the csv reader.
 
+https://stackoverflow.com/questions/3964681/find-all-files-in-a-directory-with-extension-txt-in-python
+I used this discussion in Stack Overflow to implement the os module to find files in the directory.
 
 
 ## Known Problems, Issues, And/Or Errors in the Program

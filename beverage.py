@@ -11,6 +11,7 @@ from typing import Union
 
 
 class Beverage:
+    """This class handles one instance of a beverage"""
     ####################
     # Constructor      #
     ####################
@@ -37,6 +38,7 @@ class Beverage:
         return f"${n:.2f}"
 
 class BeverageCollection:
+    """This class handles a list of beverages"""
     ################
     # Constructor  #
     ################
