@@ -12,7 +12,7 @@ from beverage import *
 
 class UserInterface:
     """This class handles all UI"""
-    
+
     """Universal Menu List"""
     MENU_LIST = [1, 2, 3, 4, 5, 6]
     ##################
@@ -49,7 +49,7 @@ class UserInterface:
         except ValueError:
             print("**Not an integer.\n")
             return True, None
-        if x in self.menu_list:
+        if x in self.MENU_LIST:
             return False, x
         else:
             print("**You must type 1, 2, 3, 4, 5, or 6\n")
