@@ -31,6 +31,7 @@ class Beverage:
         return (f"{self.bId:<6} {self.name:<50} {self.pack:<15} {self.__format_decimal(float(self.price)):<6} "
                 f"{self.active:<5}")
 
+    @property
     def __format_decimal(self, n: float) -> str:
         """Format Decimal"""
         return f"${n:.2f}"
