@@ -68,7 +68,7 @@ class UserInterface:
         else:
             print("**ID not found.\n")
 
-    def add_new_beverage(self, collection: BeverageCollection) -> str:
+    def add_new_beverage(self, collection: BeverageCollection) -> tuple:
         """Add beverage to list"""
         check0 = True
         while check0:
