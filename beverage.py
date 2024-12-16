@@ -1,6 +1,4 @@
-#Walter Podewil
-#CIS 226
-#September 14, 2024
+
 
 #System Imports
 from typing import Union
