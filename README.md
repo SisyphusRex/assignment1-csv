@@ -1,7 +1,7 @@
 # Assignment 1 - Review of Python Basic Concepts and Introduction to Git
 
 ## Author
-Theodore Walter Podewil
+
 
 
 ## Description
