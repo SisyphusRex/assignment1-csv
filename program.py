@@ -1,7 +1,4 @@
 
-#Walter Podewil
-#CIS 226
-#September 15, 2024
 
 #System Imports
 
